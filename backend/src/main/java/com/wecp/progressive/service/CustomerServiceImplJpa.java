@@ -2,8 +2,10 @@ package com.wecp.progressive.service;
 
 
 import com.wecp.progressive.entity.Customers;
+import com.wecp.progressive.exception.CustomerAlreadyExistsException;
 import com.wecp.progressive.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,13 +15,11 @@ import java.util.List;
 
 @Service
 public class CustomerServiceImplJpa implements CustomerService {
-
-    private final CustomerRepository customerRepository;
-
     @Autowired
-    public CustomerServiceImplJpa(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
+    private CustomerRepository customerRepository;
+
+   
+    
 
     private static List<Customers> customersList = new ArrayList<>();
     @Override
@@ -34,6 +34,10 @@ public class CustomerServiceImplJpa implements CustomerService {
 
     @Override
     public int addCustomer(Customers customers) {
+        Customers customers1 = customerRepository.findByNameAndEmail(customers.getName(), customers.getEmail());
+        if (customers1 != null) {
+            throw new CustomerAlreadyExistsException("Customer already exists");
+        }
         return customerRepository.save(customers).getCustomerId();
     }
 
@@ -43,7 +47,8 @@ public class CustomerServiceImplJpa implements CustomerService {
     }
 
     @Override
-    @Transactional
+    
+    @Modifying
     public void deleteCustomer(int customerId) {
         customerRepository.deleteByCustomerId(customerId);
     }
@@ -57,7 +62,7 @@ public class CustomerServiceImplJpa implements CustomerService {
 
 
 
-    // The methods mentioned below have to be used for storing and manipulating data in an ArrayList.
+    
     @Override
     public List<Customers> getAllCustomersFromArrayList() {
         return customersList;

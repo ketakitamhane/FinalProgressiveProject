@@ -25,7 +25,7 @@ public class Accounts implements Comparable<Accounts> {
         this.balance=balance;
     }
 
-    
+   
     public int getAccountId() {
         return accountId;
     }
@@ -52,7 +52,6 @@ public class Accounts implements Comparable<Accounts> {
 
     @Override
     public int compareTo(Accounts otherAccounts) {
-       
         return Double.compare(this.getBalance(), otherAccounts.getBalance());
     }
 }

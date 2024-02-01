@@ -8,7 +8,7 @@ public class Transactions {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int transactionId;
     @ManyToOne
-   
+    
     private Accounts accounts;
     private double amount;
     private String transactionType;
@@ -26,7 +26,7 @@ public class Transactions {
         this.transactionType = transactionType;
     }
 
-    
+   
     public int getTransactionId() {
         return transactionId;
     }

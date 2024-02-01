@@ -1,4 +1,3 @@
-//94% of storage used … If you run out, you won't have enough storage to create, edit, and upload files. Get 100 GB of storage for ₹130.00 ₹35.00/month for 3 months.
 package com.wecp.progressive.dao;
 
 import com.wecp.progressive.config.DatabaseConnectionManager;

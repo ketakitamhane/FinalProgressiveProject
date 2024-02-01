@@ -18,7 +18,7 @@ public class Customers implements Comparable<Customers> {
     private String role;
 
     public Customers() {
-       
+        
     }
 
     public Customers(int customerId, String name, String email, String username, String password) {
