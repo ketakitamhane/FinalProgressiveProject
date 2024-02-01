@@ -9,13 +9,13 @@ public class Accounts implements Comparable<Accounts> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int accountId;
     @ManyToOne
-    @JoinColumn(name = "customerId") // name refers to the column name in the Accounts table
+    
     private Customers customer;
 
     private double balance;
 
     public Accounts() {
-        // constrcutor
+       
     }
 
 
@@ -25,7 +25,7 @@ public class Accounts implements Comparable<Accounts> {
         this.balance=balance;
     }
 
-    // Getters and setters
+    
     public int getAccountId() {
         return accountId;
     }
@@ -52,7 +52,7 @@ public class Accounts implements Comparable<Accounts> {
 
     @Override
     public int compareTo(Accounts otherAccounts) {
-        // Implement comparison logic based on account balance
+       
         return Double.compare(this.getBalance(), otherAccounts.getBalance());
     }
 }
